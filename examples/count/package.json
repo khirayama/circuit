@@ -1,0 +1,23 @@
+{
+  "name": "count",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "browserify src/index.js -o bundle.js -t babelify"
+  },
+  "dependencies": {
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.1",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  }
+}
