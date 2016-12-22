@@ -1,24 +1,21 @@
-import {EventEmitter} from 'events';
-import {Component} from 'react';
-
 const EVENT_CHANGE = '__CHANGE_STORE';
 const ACTION_DISPATCH = '__ACTION_DISPATCH';
 
-export class Store extends EventEmitter {
+export class Store {
   constructor(state, reducer) {
-    super();
-
     this.state = state || {};
+
     this._reducer = reducer || (state => {
       return state;
     });
+    this._listeners = {};
 
-    this.subscribe();
+    this._subscribe();
   }
   dispatch(action) {
     this.emit(ACTION_DISPATCH, action);
   }
-  subscribe() {
+  _subscribe() {
     this.on(ACTION_DISPATCH, action => {
       this.state = this._reducer(this.state, action);
       if (typeof window === 'object') {
@@ -39,6 +36,39 @@ export class Store extends EventEmitter {
   }
   getState() {
     return Object.assign({}, this.state);
+  }
+
+  emit(type, payload) {
+    if (!this._listeners[type]) {
+      return this;
+    }
+    this._listeners[type].forEach(_listener => {
+      _listener.listener.apply(this, [payload]);
+    });
+    return this;
+  }
+
+  addListener(type, listener) {
+    this._listeners[type] = this._listeners[type] || [];
+    this._listeners[type].push({listener});
+    return this;
+  }
+
+  removeListener(type, listener) {
+    if (!this._listeners[type]) {
+      return this;
+    }
+    if (!this._listeners[type].length) {
+      return this;
+    }
+    if (!listener) {
+      delete this._listeners[type];
+      return this;
+    }
+    this._listeners[type] = this._listeners[type].filter(
+      _listener => !(_listener.listener === listener)
+    );
+    return this;
   }
 }
 
@@ -64,29 +94,3 @@ export function getState() {
 export function dispatch(action) {
   return _store.dispatch(action);
 }
-
-export class Container extends Component {
-  constructor() {
-    super();
-
-    this.forceUpdate = this.forceUpdate.bind(this);
-  }
-  getState() {
-    const store = getStore();
-    return store.getState();
-  }
-  dispatch(action) {
-    const store = getStore();
-    store.dispatch(action);
-  }
-  componentDidMount() {
-    const store = getStore();
-    store.addChangeListener(this.forceUpdate);
-  }
-  componentWillUnmount() {
-    const store = getStore();
-    store.removeChangeListener(this.forceUpdate);
-  }
-}
-
-Container.propTypes = {};
