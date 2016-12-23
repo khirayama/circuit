@@ -19,7 +19,7 @@ export class Store {
 
   _subscribe() {
     this.addListener(ACTION_DISPATCH, action => {
-      this.state = this._reducer(this.state, action);
+      this.state = this._reducer(Object.assign({}, this.state), action);
       if (typeof window === 'object') {
         console.log('%cAction:', 'color: #b71c1c; font-weight: bold;', action);
         console.log('%cState:', 'color: #0d47a1; font-weight: bold;', this.state);
