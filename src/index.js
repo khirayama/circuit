@@ -12,11 +12,13 @@ export class Store {
 
     this._subscribe();
   }
+
   dispatch(action) {
     this.emit(ACTION_DISPATCH, action);
   }
+
   _subscribe() {
-    this.on(ACTION_DISPATCH, action => {
+    this.addListener(ACTION_DISPATCH, action => {
       this.state = this._reducer(this.state, action);
       if (typeof window === 'object') {
         console.log('%cAction:', 'color: #b71c1c; font-weight: bold;', action);
@@ -25,15 +27,19 @@ export class Store {
       this.dispatchChange();
     });
   }
+
   dispatchChange() {
     this.emit(EVENT_CHANGE);
   }
+
   addChangeListener(listener) {
     this.addListener(EVENT_CHANGE, listener);
   }
+
   removeChangeListener(listener) {
     this.removeListener(EVENT_CHANGE, listener);
   }
+
   getState() {
     return Object.assign({}, this.state);
   }
