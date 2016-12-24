@@ -6,6 +6,7 @@ export class Container extends Component {
     super();
 
     const store = getStore();
+
     this.state = store.getState();
 
     this.dispatch = store.dispatch.bind(store);
@@ -14,16 +15,19 @@ export class Container extends Component {
 
   componentDidMount() {
     const store = getStore();
+
     store.addChangeListener(this.updateState);
   }
 
   componentWillUnmount() {
     const store = getStore();
+
     store.removeChangeListener(this.updateState);
   }
 
   _updateState() {
     const store = getStore();
+
     this.setState(store.getState());
   }
 }

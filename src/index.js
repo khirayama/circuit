@@ -24,9 +24,9 @@ export function getState() {
 }
 
 export function dispatch(action) {
-  if (_store !== null) {
-    _store.dispatch(action);
-  } else {
+  if (_store === null) {
     throw new Error('Call createStore before to call this function.');
+  } else {
+    _store.dispatch(action);
   }
 }

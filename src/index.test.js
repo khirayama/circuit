@@ -14,7 +14,7 @@ test.beforeEach(t => {
   t.is(store, null);
 });
 
-test.afterEach(t => {
+test.afterEach(() => {
   clearStore();
 });
 
@@ -24,7 +24,7 @@ test('createStore > call createStore with initial state.', t => {
   const store = getStore();
 
   t.not(store, null);
-  t.deepEqual(store.getState(), {initialState: true})
+  t.deepEqual(store.getState(), {initialState: true});
 });
 
 test('createStore > call createStore twice.', t => {
@@ -33,7 +33,7 @@ test('createStore > call createStore twice.', t => {
   const store = getStore();
 
   t.not(store, null);
-  t.deepEqual(store.getState(), {initialState: true})
+  t.deepEqual(store.getState(), {initialState: true});
 });
 
 // getStore
@@ -48,7 +48,7 @@ test('getStore > call createStore without initial state.', t => {
   const store = getStore();
 
   t.not(store, null);
-  t.deepEqual(store.getState(), {})
+  t.deepEqual(store.getState(), {});
 });
 
 // clearStore
@@ -83,7 +83,6 @@ test('dispatch > call Store.dispatch before createStore', t => {
 
 test('dispatch > call Store.dispatch (dispatch function is alias to Store.dispatch)', t => {
   createStore();
-  const store = getStore();
 
   t.notThrows(dispatch);
 });

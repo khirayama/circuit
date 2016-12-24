@@ -42,6 +42,9 @@ test('Store > update state to dispatch and subscribe', t => {
     switch (action.type) {
       case '__TEST_ACTION':
         state.callTestAction = true;
+        break;
+      default:
+        break;
     }
     return state;
   });
