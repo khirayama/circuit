@@ -1,4 +1,4 @@
-import {Component, PropTypes} from 'react';
+import {Component} from 'react';
 import {getStore} from '../';
 
 export class Container extends Component {
