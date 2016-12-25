@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "prepublish": "npm test && npm run lint ./src && npm run build",
-    "build": "babel src --out-dir lib --source-maps-inline",
+    "postinstall": "if [ ! -e node_modules ]; then npm install ; fi && npm run build",
+    "build": "babel src --out-dir lib",
     "watch": "babel src --out-dir lib --watch --source-maps-inline",
     "lint": "eslint -c=package.json",
     "lint:fix": "eslint -c=package.json --fix",
