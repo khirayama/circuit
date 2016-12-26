@@ -6,6 +6,7 @@ export function createStore(state, reducer) {
   if (_store === null) {
     _store = new Store(state, reducer);
   }
+  return _store;
 }
 
 export function getStore() {

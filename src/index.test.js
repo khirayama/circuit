@@ -20,8 +20,7 @@ test.afterEach(() => {
 
 // createStore
 test('createStore > call createStore with initial state.', t => {
-  createStore({initialState: true});
-  const store = getStore();
+  const store = createStore({initialState: true});
 
   t.not(store, null);
   t.deepEqual(store.getState(), {initialState: true});
@@ -68,8 +67,7 @@ test('getState > call getState before createStore.', t => {
 });
 
 test('getState > call getState after createStore.', t => {
-  createStore({initialState: true});
-  const store = getStore();
+  const store = createStore({initialState: true});
 
   t.not(store, null);
   t.not(store.getState(), getState());
