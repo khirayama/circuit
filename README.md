@@ -1,4 +1,4 @@
-# Circuit
+# <img src="logo/logo-title-dark.png" height="60"/>
 
 Circuit is a simple flux store and dispatcher for JavaScipt apps.  
 Circuit provide `Store` with dispatch and subscription functions.  
@@ -43,6 +43,8 @@ It is a reference implementation only. It is not HOC.
 [Documents](documents.md)
 
 ## Examples
+
+Ref: [examples](examples)
 
 ```javascript
 
