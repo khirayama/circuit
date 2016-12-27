@@ -7,6 +7,10 @@ export class Container extends Component {
 
     const store = getStore();
 
+    if (store === null) {
+      throw new Error('Call createStore before to call this function.');
+    }
+
     this.state = store.getState();
 
     this.dispatch = store.dispatch.bind(store);
