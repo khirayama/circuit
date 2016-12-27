@@ -2,7 +2,8 @@
 
 Circuit is a simple flux store and dispatcher for JavaScipt apps.  
 Circuit provide `Store` with dispatch and subscription functions.  
-If you use React, You can use `Container` component for Circuit's store.
+
+If you use React, You can use [React Circuit](https://github.com/khirayama/react-circuit) component for Circuit's store.
 
 ## Table of Contents
 
@@ -17,8 +18,6 @@ If you use React, You can use `Container` component for Circuit's store.
     - store.dispatch(action)
     - store.addChangeListener(callback)
     - store.removeChangeListener(callback)
-  - class: Container
-    - container.dispatch
 
 ## Documents
 
@@ -158,32 +157,5 @@ Removes the specified `listener` from the listener array for updating `store.sta
 const store = getStore();
 
 store.removeChangeListener(componentUpdate);
-
-```
-
-### Class: Container
-
-`Container` is component extended `React.Component`.  
-It has `store.state` as `this.state` and subscribe updating `store.state`.  
-When update `store.state`, `Container` map `store.state` to `this.state` and call `render` via `this.setState`.  
-Use this with `extends`.
-
-#### container.dispatch(action)
-
-Alias for `store.dispatch`. If call this before `createStore`, throw error.
-
-```javascript
-
-export default class CountContainer extends Container {
-  render() {
-    return (
-      <section>
-        <h1>Count: {this.state.total}</h1>
-        <CountButton onCountButtonClick={countUp(this.dispatch)}>Count up +1</CountButton>
-        <CountButton onCountButtonClick={countDown(this.dispatch)}>Count down -1</CountButton>
-      </section>
-    );
-  }
-}
 
 ```

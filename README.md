@@ -2,16 +2,18 @@
 
 Circuit is a simple flux store and dispatcher for JavaScipt apps.  
 Circuit provide `Store` with dispatch and subscription functions.  
-If you use React, You can use `Container` component for Circuit's store.
 
-## Getting Started
+If you use React, You can use [React Circuit](https://github.com/khirayama/react-circuit) component for Circuit's store.
 
-This has not been published to npm yet.
-Add this package to `package.json` as `khirayama/circuit`.
+## Installation
+
+```
+npm install --save @khirayama/circuit
+```
 
 ## API
 
-This has 5 functions, store and container for react.  
+This has 5 functions and store.  
 Ref: [Documents](documents.md)
 
 ### Functions
@@ -33,18 +35,13 @@ Store instance has 4 publich methods.
 - store.addChangeListener
 - store.removeChangeListener
 
-### Container
-
-Container provide state and dispatch for react.
-It is a reference implementation only. It is not HOC.
-
-## Documents
+## Documentation
 
 [Documents](documents.md)
 
 ## Examples
 
-Ref: [examples](examples)
+Ref: [Examples](examples)
 
 ```javascript
 

@@ -1,8 +1,8 @@
 {
-  "name": "circuit",
-  "version": "0.1.0",
+  "name": "@khirayama/circuit",
+  "version": "0.1.2",
   "description": "",
-  "main": "lib/index.js",
+  "main": "lib",
   "engines": {
     "node": ">=0.10.0"
   },
