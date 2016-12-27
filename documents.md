@@ -1,4 +1,10 @@
-# Table of Contents
+# Circuit
+
+Circuit is a simple flux store and dispatcher for JavaScipt apps.  
+Circuit provide `Store` with dispatch and subscription functions.  
+If you use React, You can use `Container` component for Circuit's store.
+
+## Table of Contents
 
 - Circuit
   - createStore(initialState, reducer)
@@ -14,11 +20,7 @@
   - class: Container
     - container.dispatch
 
-## Circuit
-
-Circuit is a simple flux store and dispatcher for JavaScipt apps.  
-Circuit provide `Store` with dispatch and subscription functions.  
-If you use React, You can use `Container` component for Circuit's store.
+## Documents
 
 ### createStore(initialState, reducer)
 
