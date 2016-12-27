@@ -174,7 +174,7 @@ Alias for `store.dispatch`. If call this before `createStore`, throw error.
 
 ```javascript
 
-export default class CountCountainer extends Container {
+export default class CountContainer extends Container {
   render() {
     return (
       <section>

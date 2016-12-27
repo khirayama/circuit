@@ -9,7 +9,7 @@ import {
 
 import CountButton from '../components/count-button';
 
-export default class CountCountainer extends Container {
+export default class CountContainer extends Container {
   render() {
     return (
       <section>

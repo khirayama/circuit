@@ -4,11 +4,11 @@ import ReactDOM from 'react-dom';
 import {createStore} from '../../../lib';
 import reducer from './reducers';
 
-import CountCountainer from './containers/count-countainer';
+import CountContainer from './containers/count-container';
 
 window.addEventListener('DOMContentLoaded', () => {
   const initialState = {total: 0};
   createStore(initialState, reducer);
 
-  ReactDOM.render(<CountCountainer />, document.querySelector('.count'));
+  ReactDOM.render(<CountContainer />, document.querySelector('.count'));
 });

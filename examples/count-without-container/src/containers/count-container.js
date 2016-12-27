@@ -9,7 +9,7 @@ import {
 
 import CountButton from '../components/count-button';
 
-export default class CountCountainer extends Component {
+export default class CountContainer extends Component {
   constructor() {
     super();
 
