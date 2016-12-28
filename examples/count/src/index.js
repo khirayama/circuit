@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {createStore} from '../../../lib';
+import {createStore} from '@khirayama/circuit';
 import reducer from './reducers';
 
 import CountContainer from './containers/count-container';

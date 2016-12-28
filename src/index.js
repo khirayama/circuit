@@ -31,3 +31,5 @@ export function dispatch(action) {
     _store.dispatch(action);
   }
 }
+
+export {Store};

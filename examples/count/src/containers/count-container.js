@@ -1,6 +1,6 @@
-import React, {PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 
-import {Container} from '../../../../lib/react';
+import {getStore} from '@khirayama/circuit';
 
 import {
   countUp,
@@ -9,7 +9,35 @@ import {
 
 import CountButton from '../components/count-button';
 
-export default class CountContainer extends Container {
+export default class CountContainer extends Component {
+  constructor() {
+    super();
+
+    const store = getStore();
+
+    this.state = store.getState();
+
+    this.dispatch = store.dispatch.bind(store);
+    this.updateState = this._updateState.bind(this);
+  }
+
+  componentDidMount() {
+    const store = getStore();
+
+    store.addChangeListener(this.updateState);
+  }
+
+  componentWillUnmount() {
+    const store = getStore();
+
+    store.removeChangeListener(this.updateState);
+  }
+
+  _updateState() {
+    const store = getStore();
+
+    this.setState(store.getState());
+  }
   render() {
     return (
       <section>
