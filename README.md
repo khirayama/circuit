@@ -14,7 +14,7 @@ npm install --save @khirayama/circuit
 ## API
 
 This has 5 functions and store.  
-Ref: [Documents](documents.md)
+Ref: [Documents](docs)
 
 ### Functions
 
@@ -37,7 +37,7 @@ Store instance has 4 publich methods.
 
 ## Documentation
 
-[Documents](documents.md)
+[Documents](docs)
 
 ## Examples
 
