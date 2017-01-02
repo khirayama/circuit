@@ -1,14 +1,20 @@
 const EVENT_CHANGE = '__CHANGE_STORE';
 const ACTION_DISPATCH = '__ACTION_DISPATCH';
 
+function clone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
 export default class Store {
-  constructor(state, reducer) {
+  constructor(state, reducer, options = {}) {
     this._state = state || {};
 
     this._reducer = reducer || (state => {
       return state;
     });
     this._listeners = {};
+
+    this._shouldChangeDispatch = options.shouldChangeDispatch || (() => true);
 
     this._subscribe();
   }
@@ -49,12 +55,18 @@ export default class Store {
 
   _subscribe() {
     this._addListener(ACTION_DISPATCH, action => {
-      this._state = this._reducer(Object.assign({}, this._state), action);
+      const currentState = clone(this._state);
+      const nextState = this._reducer(clone(this._state), action);
       if (typeof window === 'object') {
-        console.log('%cAction:', 'color: #b71c1c; font-weight: bold;', action);
-        console.log('%cState:', 'color: #0d47a1; font-weight: bold;', this._state);
+        console.log('%cAction:', 'color: #76b6c8; font-weight: bold;', action);
+        console.log('%cState:', 'color: #2e4551; font-weight: bold;', this._state);
       }
-      this._dispatchChange();
+
+      this._state = nextState;
+
+      if (this._shouldChangeDispatch(currentState, nextState)) {
+        this._dispatchChange();
+      }
     });
   }
 
@@ -64,7 +76,7 @@ export default class Store {
 
   // public
   getState() {
-    return Object.assign({}, this._state);
+    return clone(this._state);
   }
 
   dispatch(action) {

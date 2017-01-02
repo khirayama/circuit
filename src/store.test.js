@@ -59,6 +59,34 @@ test('Store > update state to dispatch and subscribe', t => {
   t.deepEqual(store.getState(), {callTestAction: true});
 });
 
+test('Store > update state to dispatch and subscribe with shouldChangeDispatch option', t => {
+  const store = new Store(null, (state, action) => {
+    switch (action.type) {
+      case '__TEST_ACTION':
+        state.callTestAction = true;
+        break;
+      default:
+        break;
+    }
+    return state;
+  }, {
+    shouldChangeDispatch: (currentState, nextState) => {
+      return (currentState.callTestAction !== nextState.callTestAction);
+    },
+  });
+  const spy = sinon.spy(store, '_dispatchChange');
+
+  t.is(spy.callCount, 0);
+  t.deepEqual(store.getState(), {});
+
+  // call dispatch __TEST_ACTION twice
+  store.dispatch({type: '__TEST_ACTION'});
+  store.dispatch({type: '__TEST_ACTION'});
+
+  t.is(spy.callCount, 1);
+  t.deepEqual(store.getState(), {callTestAction: true});
+});
+
 test('Store > call addChangeListener', t => {
   const store = new Store();
   const callback = sinon.stub();

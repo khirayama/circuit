@@ -21,10 +21,12 @@ If you use React, You can use [React Circuit](https://github.com/khirayama/react
 
 ## Documents
 
-### createStore(initialState, reducer)
+### createStore(initialState, reducer[, options])
 
 - `initialState` `<Object>` The initial state
 - `reducer` `<Function>` The state and action handler function
+- `options` `<Object>>`
+  - `shouldChangeDispatch` `<Function>` Since shouldChangeDispatch returned `false`, Store doesn't dispatch change event ( **this state is updated** ).
 
 ```javascript
 
@@ -47,6 +49,10 @@ function reducer(state, action) {
   }
   // This `state` is set to `store.state`.
   return state;
+}
+
+function shouldChangeDispatch(currentState, nextState) {
+  return (currentState.total !== nextState.total);
 }
 
 createStore(initialstate, reducer);

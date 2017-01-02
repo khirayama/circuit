@@ -2,9 +2,9 @@ import Store from './store';
 
 let _store = null;
 
-export function createStore(state, reducer) {
+export function createStore(state, reducer, options) {
   if (_store === null) {
-    _store = new Store(state, reducer);
+    _store = new Store(state, reducer, options);
   }
   return _store;
 }
