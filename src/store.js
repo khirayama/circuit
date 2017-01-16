@@ -57,12 +57,13 @@ export default class Store {
     this._addListener(ACTION_DISPATCH, action => {
       const currentState = clone(this._state);
       const nextState = this._reducer(clone(this._state), action);
+
+      this._state = nextState;
+
       if (typeof window === 'object') {
         console.log('%cAction:', 'color: #76b6c8; font-weight: bold;', action);
         console.log('%cState:', 'color: #2e4551; font-weight: bold;', this._state);
       }
-
-      this._state = nextState;
 
       if (this._shouldChangeDispatch(currentState, nextState)) {
         this._dispatchChange();
